@@ -1,8 +1,11 @@
 package com.ofg.loans.model;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Client entity.
  */
+@Component
 public class Client {
 
     private String firstName;

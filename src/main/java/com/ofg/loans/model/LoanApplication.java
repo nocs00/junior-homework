@@ -15,14 +15,21 @@ public class LoanApplication {
     private LocalDateTime applicationTS;
     private Client client;
     private int amount;
+    private int termDays;
 
-    public LoanApplication(String ipAddress, Client client, int amount) {
+    public LoanApplication() {}
+
+    public LoanApplication(String ipAddress, Client client, int amount, int termDays) {
+        this.ipAddress = ipAddress;
         this.client = client;
         this.amount = amount;
+        this.termDays = termDays;
         applicationTS = LocalDateTime.now();
 
-        if (this.amount > RiskService.MAXIMUM_LOAN_AMOUNT)
+        if (this.amount > RiskService.MAXIMUM_LOAN_AMOUNT || this.amount < 1)
             this.amount = RiskService.MAXIMUM_LOAN_AMOUNT;
+        if (this.termDays < 1)
+            this.termDays = 7;
     }
 
     public int getAmount() {
@@ -39,5 +46,9 @@ public class LoanApplication {
 
     public Client getClient() {
         return client;
+    }
+
+    public void setApplicationTS(LocalDateTime applicationTS) {
+        this.applicationTS = applicationTS;
     }
 }

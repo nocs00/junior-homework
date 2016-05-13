@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Created by pdudenkov on 12.05.2016.
+ * List needed here to inject from context.xml
  */
 @Service
 public class RiskServiceImpl implements RiskService {
