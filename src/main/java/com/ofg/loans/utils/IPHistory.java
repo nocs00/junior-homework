@@ -1,5 +1,6 @@
 package com.ofg.loans.utils;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,19 +10,12 @@ import java.util.Map;
 public abstract class IPHistory {
     private static Map<String, Integer> ipMap = new HashMap<>();
 
-    /* This data comes from Servlet
-    *
-    *String ipAddress = servletRequest.getHeader("X-FORWARDED-FOR");
-    *if (ipAddress == null) {
-	*   ipAddress = request.getRemoteAddr();
-    *}
-    *
-     */
+    //This data comes from Controller
     public static void addAttempt(String ip) {
         if (ipMap.containsKey(ip))
-            ipMap.put(ip, 1);
+            ipMap.put(ip, ipMap.get(ip) + 1);
         else
-            ipMap.put(ip, ipMap.get(ip)+1);
+            ipMap.put(ip, 1);
     }
 
     public static void init(Map<String, Integer> injectedMap) {

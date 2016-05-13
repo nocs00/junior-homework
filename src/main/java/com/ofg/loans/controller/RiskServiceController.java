@@ -1,45 +1,55 @@
 package com.ofg.loans.controller;
 
-import com.ofg.loans.model.Client;
+import com.ofg.loans.model.LoanApplication;
+import com.ofg.loans.service.risk.RiskService;
+import com.ofg.loans.utils.IPHistory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 /**
  * Created by pdudenkov on 13.05.2016.
  */
 
-
-
 @Controller
 public class RiskServiceController {
+    @Autowired
+    private RiskService service;
 
-    /*First method on start application*/
-    /*Попадаем сюда на старте приложения (см. параметры аннтоции и настройки пути после деплоя) */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("userJSP", new Client());
+        modelAndView.addObject("loanJSP", new LoanApplication());
         modelAndView.setViewName("index");
         return modelAndView;
     }
 
-    /*как только на index.jsp подтвердится форма
-    <spring:form method="post"  modelAttribute="userJSP" action="check-user">,
-    то попадем вот сюда
-     */
-    @RequestMapping(value = "/check-user")
-    public ModelAndView checkUser(@ModelAttribute("userJSP") Client client) {
+    @RequestMapping(value = "/approve-loan")
+    public ModelAndView approveLoan(
+            @ModelAttribute("loanJSP") LoanApplication loanApplication,
+            HttpServletRequest request
+    ) {
         ModelAndView modelAndView = new ModelAndView();
-
-        //имя представления, куда нужно будет перейти
         modelAndView.setViewName("secondPage");
 
-        //записываем в атрибут userJSP (используется на странице *.jsp объект user
-        modelAndView.addObject("userJSP", client);
+        String ipAddress = request.getHeader("X-FORWARDED-FOR");
+        if (ipAddress == null) {
+            ipAddress = request.getRemoteAddr();
+        }
+        loanApplication.setApplicationTS(LocalDateTime.now());
+        loanApplication.setIpAddress(ipAddress);
+        IPHistory.addAttempt(ipAddress);
 
-        return modelAndView; //после уйдем на представление, указанное чуть выше, если оно будет найдено.
+
+        modelAndView.addObject("loanJSP", loanApplication);
+        modelAndView.addObject("isLoanApproved", service.approve(loanApplication));
+        modelAndView.addObject("ipAttempts", IPHistory.checkIp(ipAddress));
+
+        return modelAndView;
     }
 }

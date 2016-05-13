@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Client {
-
     private String firstName;
 
     private String lastName;

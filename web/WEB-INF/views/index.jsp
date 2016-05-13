@@ -1,22 +1,20 @@
-<!-- обратите внимание на spring тэги -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 
 <head>
-  <title>Index Page</title>
+    <title>Loan Service Page</title>
 </head>
 
 <body>
-<spring:form method="post"  modelAttribute="userJSP" action="check-user">
-
-  Name: <spring:input path="firstName"/> (path="" - указывает путь, используемый в modelAttribute=''. в нашем случае User.name)  <br/>
-  Password: <spring:input path="lastName"/>   <br/>
-  <spring:button>Next Page</spring:button>
-
+<spring:form method="post" modelAttribute="loanJSP" action="approve-loan">
+    First name: <spring:input path="client.firstName"/> <br/>
+    Last name: <spring:input path="client.lastName"/> <br/><br/>
+    Amount: <spring:input path="amount"/> <br/>
+    Term: <spring:input path="termDays"/> <br/>
+    <spring:button>Approve loan</spring:button>
 </spring:form>
-
 </body>
 
 </html>

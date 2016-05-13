@@ -9,7 +9,7 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-    <context:annotation-config />
+    <context:annotation-config/>
     <context:component-scan base-package="com.ofg.loans"/>
     <context:property-placeholder location="classpath:config.properties"/>
 
@@ -17,10 +17,10 @@
     <bean class="com.ofg.loans.rules.impls.TimeframeRiskRule"/>
 
     <bean id="client" class="com.ofg.loans.model.Client"
-            p:firstName="Noob"
-            p:lastName="Saibot"/>
+          p:firstName="Noob"
+          p:lastName="Saibot"/>
 
-    <bean id="may" class="java.time.Month" factory-method="of" c:_0="4" />
+    <bean id="may" class="java.time.Month" factory-method="of" c:_0="4"/>
     <bean id="goodTime" class="java.time.LocalDateTime" factory-method="of"
           c:_0="2016" c:_1-ref="may" c:_2="12"
           c:_3="12" c:_4="0"/>
@@ -33,7 +33,7 @@
           p:applicationTS-ref="goodTime"/>
     <bean class="com.ofg.loans.model.LoanApplication"
           c:_0="127.0.0.2" c:_1-ref="client" c:_2="90" c:_3="10"
-            p:applicationTS-ref="goodTime"/>
+          p:applicationTS-ref="goodTime"/>
     <bean class="com.ofg.loans.model.LoanApplication"
           c:_0="127.0.0.3" c:_1-ref="client" c:_2="100" c:_3="20"/>
     <bean id="badLoanApplication" class="com.ofg.loans.model.LoanApplication"

@@ -1,10 +1,8 @@
 package com.ofg.loans.model;
 
-import com.ofg.loans.rules.RiskRule;
 import com.ofg.loans.service.risk.RiskService;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 /**
@@ -17,7 +15,10 @@ public class LoanApplication {
     private int amount;
     private int termDays;
 
-    public LoanApplication() {}
+    public LoanApplication() {
+        client = new Client();
+        applicationTS = LocalDateTime.now();
+    }
 
     public LoanApplication(String ipAddress, Client client, int amount, int termDays) {
         this.ipAddress = ipAddress;
@@ -30,6 +31,22 @@ public class LoanApplication {
             this.amount = RiskService.MAXIMUM_LOAN_AMOUNT;
         if (this.termDays < 1)
             this.termDays = 7;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setTermDays(int termDays) {
+        this.termDays = termDays;
     }
 
     public int getAmount() {
@@ -50,5 +67,9 @@ public class LoanApplication {
 
     public void setApplicationTS(LocalDateTime applicationTS) {
         this.applicationTS = applicationTS;
+    }
+
+    public int getTermDays() {
+        return termDays;
     }
 }

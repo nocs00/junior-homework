@@ -4,10 +4,7 @@ import com.ofg.loans.model.LoanApplication;
 import com.ofg.loans.rules.RiskRule;
 import com.ofg.loans.utils.IPHistory;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.ofg.loans.service.risk.RiskService.*;
+import static com.ofg.loans.service.risk.RiskService.MAXIMUM_ATTEMPTS_PER_IP_ADDRESS;
 
 /**
  * Created by pdudenkov on 12.05.2016.

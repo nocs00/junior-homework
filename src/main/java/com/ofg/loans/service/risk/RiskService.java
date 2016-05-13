@@ -3,7 +3,7 @@ package com.ofg.loans.service.risk;
 import com.ofg.loans.model.LoanApplication;
 
 /**
- * Please implement this interface. 
+ * Please implement this interface.
  * Do not change signature of the method Boolean approve(LoanApplication loanApplication).
  */
 public interface RiskService {
@@ -20,12 +20,12 @@ public interface RiskService {
 
     /**
      * Analyze provided loan application for possible risk.
-     * <p/>
+     * <p>
      * Risk is considered too high in the next cases:
-     * <p/>
+     * <p>
      * 1. Loan application is created outside of the time frame 06:00..00:00 with maximum allowed amount.
      * 2. Client reached the maximum application attempts count per day from a single IP address.
-     * <p/>
+     * <p>
      * Number and combination of risk rules are subject to change in the future.
      *
      * @param loanApplication

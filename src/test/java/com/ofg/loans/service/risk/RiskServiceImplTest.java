@@ -2,8 +2,6 @@ package com.ofg.loans.service.risk;
 
 import com.ofg.loans.model.Client;
 import com.ofg.loans.model.LoanApplication;
-import com.ofg.loans.rules.RiskRule;
-import com.ofg.loans.rules.impls.MaxAttemptsRiskRule;
 import com.ofg.loans.utils.IPHistory;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,10 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import sun.rmi.server.LoaderHandler;
-
 import javax.annotation.Resource;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

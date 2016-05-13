@@ -3,7 +3,6 @@ package com.ofg.loans.service.risk;
 
 import com.ofg.loans.model.LoanApplication;
 import com.ofg.loans.rules.RiskRule;
-import com.ofg.loans.rules.impls.MaxAttemptsRiskRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
